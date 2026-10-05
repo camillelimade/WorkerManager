@@ -1,8 +1,10 @@
 package model;
 
+import interfaces.Bonificavel;
+
 import java.sql.Date;
 
-public class Funcionario {
+public class Funcionario implements Bonificavel {
     private String nome;
     private String cpf;
     private Date dataNascimento;
