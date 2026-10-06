@@ -63,13 +63,87 @@ public class Main {
     }
     // lista gerentes
     public void listarGerentes(ArrayList<Gerente> gerentes) {
-        if (!gerentes.isEmpty()) {
+        // scanner pra ler do usuário dentro do contetxo dessa função
+        Scanner resposta = new Scanner(System.in);
+        // formatação de linha
+        linha();
+        // pergunta se quer consultar um específico ou não
+        System.out.println("Deseja um gerente específico? ");
+        // recolhe o sim, Sim, sIm, siM, e SIM, se não for nenhum desses exibe lista geral
+        String respo = resposta.nextLine();
+        if (respo.equalsIgnoreCase("sim")) {
+            System.out.println("Digite o ID do Gerente: ");
+            int ID = resposta.nextInt();
+            for (int i = 0; i < gerentes.size(); i++) {
+                if (gerentes.get(i).getID() == ID) {
+                    linha();
+                    System.out.println(gerentes.get(i).toString());
+                    linha();
+                }
+            }
             linha();
-            System.out.println("Listando Gerentes...");
+            System.out.println("ID " + ID + " não encontrado!");
             linha();
-            for (Gerente gerente : gerentes) {
-                System.out.println(gerente.toString());
+        }else {
+            if (!gerentes.isEmpty()) {
                 linha();
+                System.out.println("Listando todos os gerentes...");
+                linha();
+                for (Gerente gerente : gerentes) {
+                    System.out.println(gerente.toString());
+                    linha();
+                }
+            }
+        }
+    }
+    // atualizar gerentes
+    public void atualizarGerente(ArrayList<Gerente> gerentes, int ID) {
+        Scanner atualizaLeitor = new Scanner(System.in);
+        for (int i = 0; i < gerentes.size(); i++) {
+            if (gerentes.get(i).getID() == ID) {
+                linha();
+                // localiza informa e exibe
+                System.out.println("Gerente encontrado, dados atuais nesse ID: ");
+                System.out.println(gerentes.get(i).toString());
+                linha();
+                // pede a atualização
+                System.out.println("Digite os novos dados do Gerente: ");
+                System.out.println("Nome completo: ");
+                String novoNome = atualizaLeitor.nextLine();
+                // após pegar seta imediatamente
+                gerentes.get(i).setNome(novoNome);
+                linha();
+                System.out.println("Data de Nascimento: ");
+                String novaDataNascimento = atualizaLeitor.nextLine();
+                // após pegar seta imediatamente
+                gerentes.get(i).setDataNascimento(novaDataNascimento);
+                linha();
+                System.out.println("CPF: ");
+                String novoCPF = atualizaLeitor.nextLine();
+                // após pegar seta imediatamente
+                gerentes.get(i).setCpf(novoCPF);
+                linha();
+                System.out.println("Telefone: ");
+                String novoTelefone = atualizaLeitor.nextLine();
+                // após pegar seta imediatamente
+                gerentes.get(i).setTelefone(novoTelefone);
+                linha();
+                System.out.println("Salário: ");
+                double novoSalario = atualizaLeitor.nextDouble();
+                // após pegar seta imediatamente
+                gerentes.get(i).setSalario(novoSalario);
+                atualizaLeitor.nextLine(); // limpa buffer
+                linha();
+                System.out.println("Departamento: ");
+                String novoDepartamento = atualizaLeitor.nextLine();
+                // após pegar seta imediatamente
+                gerentes.get(i).setDepartamento(novoDepartamento);
+                linha();
+                System.out.println("Gerente atualizado com sucesso!");
+                System.out.println(gerentes.get(i).toString());
+                linha();
+            }else {
+                System.out.println("ID " + ID + " não encontrado!");
             }
         }
     }
@@ -114,7 +188,13 @@ public class Main {
                                 idGerente++; // id já auto incrementado
                                 break;
                             case 2:
+                                // lista todos os gerentes
                                 executa.listarGerentes(gerentes);
+                                break;
+                            case 3:
+                                System.out.println("Digite o ID do Gerente a ser atualizado: ");
+                                int IDGerente = lendo.nextInt();
+                                executa.atualizarGerente(gerentes, IDGerente);
                                 break;
                         }
                         break;

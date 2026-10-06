@@ -29,7 +29,7 @@ public class Gerente extends Funcionario{
     @Override
     public String toString() {
         return
-            "\nID: " + getID() +
+            "ID: " + getID() +
             "\nNome: " + getNome() +
             "\nCPF: " + getCpf() +
             "\nData de Nascimento: " + getDataNascimento() +
