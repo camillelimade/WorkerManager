@@ -1,6 +1,6 @@
 package model;
 
-import interfaces.Bonificavel;
+import service.Bonificavel;
 
 
 public class Funcionario implements Bonificavel {

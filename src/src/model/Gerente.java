@@ -1,16 +1,44 @@
 package model;
 
 public class Gerente extends Funcionario{
-    private static int cont = 0;
     int ID;
     String departamento;
 
-    public Gerente(String nome, String cpf, String dataNascimento, String telefone, double salario, String departamento) {
+    public Gerente(String nome, String cpf, String dataNascimento, String telefone, double salario, int ID, String departamento) {
         super(nome, cpf, dataNascimento, telefone, salario);
-        cont++;
-        this.ID = cont;
+        this.ID = ID;
         this.departamento = departamento;
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    @Override
+    public String toString() {
+        return
+            "\nID: " + getID() +
+            "\nNome: " + getNome() +
+            "\nCPF: " + getCpf() +
+            "\nData de Nascimento: " + getDataNascimento() +
+            "\nTelefone: " + getTelefone() +
+            "\nSalario: " + getSalario() +
+            "\nDepartamento: " + getDepartamento()
+        ;
+    }
+
     @Override
     public double calcularBonus(){
         return 0.2 * super.getSalario();
