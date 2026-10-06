@@ -4,18 +4,28 @@ import service.Bonificavel;
 
 
 public class Funcionario implements Bonificavel {
+    private int ID;
     private String nome;
     private String cpf;
     private String dataNascimento;
     private String telefone;
     private double salario;
 
-    public Funcionario(String nome, String cpf, String dataNascimento, String telefone, double salario) {
+    public Funcionario(int ID, String nome, String cpf, String dataNascimento, String telefone, double salario) {
+        this.ID = ID;
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.salario = salario;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getNome() {

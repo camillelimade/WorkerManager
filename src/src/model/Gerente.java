@@ -1,21 +1,11 @@
 package model;
 
 public class Gerente extends Funcionario{
-    int ID;
     String departamento;
 
-    public Gerente(String nome, String cpf, String dataNascimento, String telefone, double salario, int ID, String departamento) {
-        super(nome, cpf, dataNascimento, telefone, salario);
-        this.ID = ID;
+    public Gerente(int ID, String nome, String cpf, String dataNascimento, String telefone, double salario, String departamento) {
+        super(ID, nome, cpf, dataNascimento, telefone, salario);
         this.departamento = departamento;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public String getDepartamento() {
@@ -29,7 +19,7 @@ public class Gerente extends Funcionario{
     @Override
     public String toString() {
         return
-            "ID: " + getID() +
+            "ID: " + super.getID() +
             "\nNome: " + getNome() +
             "\nCPF: " + getCpf() +
             "\nData de Nascimento: " + getDataNascimento() +

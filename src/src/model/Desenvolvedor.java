@@ -3,8 +3,8 @@ package model;
 public class Desenvolvedor extends Funcionario{
     String linguagemPrincipal;
 
-    public Desenvolvedor(String nome, String cpf, String dataNascimento, String telefone, double salario, String linguagemPrincipal) {
-        super(nome, cpf, dataNascimento, telefone, salario);
+    public Desenvolvedor(int ID, String nome, String cpf, String dataNascimento, String telefone, double salario, String linguagemPrincipal) {
+        super(ID, nome, cpf, dataNascimento, telefone, salario);
         this.linguagemPrincipal = linguagemPrincipal;
     }
 

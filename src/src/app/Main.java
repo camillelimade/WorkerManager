@@ -56,7 +56,7 @@ public class Main {
         System.out.println("Digite o Departamento do Gerente: ");
         String departamento = lendoGerente.nextLine();
         linha();
-        Gerente novoGerente = new Gerente(nomeCompleto, cpf, dataNascimento, telefone, salario, ID, departamento);
+        Gerente novoGerente = new Gerente(ID, nomeCompleto, cpf, dataNascimento, telefone, salario, departamento);
         System.out.println("Gerente " + nomeCompleto + " cadastrado com sucesso!");
         linha();
         return novoGerente;
@@ -79,11 +79,12 @@ public class Main {
                     linha();
                     System.out.println(gerentes.get(i).toString());
                     linha();
+                }else {
+                    linha();
+                    System.out.println("ID " + ID + " não encontrado!");
+                    linha();
                 }
             }
-            linha();
-            System.out.println("ID " + ID + " não encontrado!");
-            linha();
         }else {
             if (!gerentes.isEmpty()) {
                 linha();
@@ -219,6 +220,9 @@ public class Main {
                                 executa.deletarGerente(gerentes, cpfGerenteDelete);
                                 break;
                         }
+                        break;
+                    case 2:
+                        // Administrar desenvolvedores
                         break;
                     case 6:
                         loop = false;
