@@ -2,16 +2,15 @@ package model;
 
 import interfaces.Bonificavel;
 
-import java.sql.Date;
 
 public class Funcionario implements Bonificavel {
     private String nome;
     private String cpf;
-    private Date dataNascimento;
+    private String dataNascimento;
     private String telefone;
     private double salario;
 
-    public Funcionario(String nome, String cpf, Date dataNascimento, String telefone, double salario) {
+    public Funcionario(String nome, String cpf, String dataNascimento, String telefone, double salario) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -35,11 +34,11 @@ public class Funcionario implements Bonificavel {
         this.cpf = cpf;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

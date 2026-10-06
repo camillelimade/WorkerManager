@@ -1,11 +1,9 @@
 package model;
 
-import java.sql.Date;
-
 public class Desenvolvedor extends Funcionario{
     String linguagemPrincipal;
 
-    public Desenvolvedor(String nome, String cpf, Date dataNascimento, String telefone, double salario, String linguagemPrincipal) {
+    public Desenvolvedor(String nome, String cpf, String dataNascimento, String telefone, double salario, String linguagemPrincipal) {
         super(nome, cpf, dataNascimento, telefone, salario);
         this.linguagemPrincipal = linguagemPrincipal;
     }
