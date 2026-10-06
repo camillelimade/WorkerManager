@@ -35,10 +35,10 @@ public class DesenvolvedorService {
         double salario = lendoDev.nextDouble();
         lendoDev.nextLine();
         linha();
-        System.out.println("Digite o Departamento do Desenvolvedor: ");
-        String departamento = lendoDev.nextLine();
+        System.out.println("Digite a Linguagem principal do Desenvolvedor: ");
+        String linguagem = lendoDev.nextLine();
         linha();
-        Desenvolvedor novoDev = new Desenvolvedor(ID, nomeCompleto, cpf, dataNascimento, telefone, salario, departamento);
+        Desenvolvedor novoDev = new Desenvolvedor(ID, nomeCompleto, cpf, dataNascimento, telefone, salario, linguagem);
         System.out.println("Desenvolvedor " + nomeCompleto + " cadastrado com sucesso!");
         linha();
         return novoDev;

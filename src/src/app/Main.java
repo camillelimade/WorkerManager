@@ -146,7 +146,38 @@ public class Main {
                         }
                         break;
                     case 4:
-                        // bonus de um funcionário
+                        // lista todos os funcionarios e permite a consulta de um deles
+                        // guardando gerentes
+                        for (int i = 0; i < gerentes.size(); i++) {
+                            funcionarios.add(gerentes.get(i));
+                        }
+                        // guardando devs
+                        for (int i = 0; i < desenvolvedores.size(); i++) {
+                            funcionarios.add(desenvolvedores.get(i));
+                        }
+                        linha();
+                        System.out.println("Digite o CPF do Funcionario: ");
+                        String cpfGeralBonus = lendo.nextLine();
+                        boolean encontrouBonus = false;
+                        for (int i = 0; i < funcionarios.size(); i++) {
+                            if (funcionarios.get(i).getCpf().equalsIgnoreCase(cpfGeralBonus)) {
+                                encontrouBonus = true;
+                                linha();
+                                System.out.println("Funcionário indice " + i + ": ");
+                                linha();
+                                System.out.println("Bônus do Funcionário: ");
+                                System.out.println(funcionarios.get(i).calcularBonus());
+                                linha();
+                                System.out.println("Demais dados: ");
+                                System.out.println(funcionarios.get(i).toString());
+                                linha();
+                            }
+                        }
+                        if (encontrouBonus == false) {
+                            linha();
+                            System.out.println("Funcionario não encontrado!");
+                            linha();
+                        }
                         break;
                     case 6:
                         loop = false;
