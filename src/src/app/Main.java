@@ -97,10 +97,10 @@ public class Main {
         }
     }
     // atualizar gerentes
-    public void atualizarGerente(ArrayList<Gerente> gerentes, int ID) {
+    public void atualizarGerente(ArrayList<Gerente> gerentes, String CPF) {
         Scanner atualizaLeitor = new Scanner(System.in);
         for (int i = 0; i < gerentes.size(); i++) {
-            if (gerentes.get(i).getID() == ID) {
+            if (gerentes.get(i).getCpf().equalsIgnoreCase(CPF)) {
                 linha();
                 // localiza informa e exibe
                 System.out.println("Gerente encontrado, dados atuais nesse ID: ");
@@ -143,7 +143,7 @@ public class Main {
                 System.out.println(gerentes.get(i).toString());
                 linha();
             }else {
-                System.out.println("ID " + ID + " não encontrado!");
+                System.out.println("CPF " + CPF + " não encontrado!");
             }
         }
     }
@@ -192,9 +192,9 @@ public class Main {
                                 executa.listarGerentes(gerentes);
                                 break;
                             case 3:
-                                System.out.println("Digite o ID do Gerente a ser atualizado: ");
-                                int IDGerente = lendo.nextInt();
-                                executa.atualizarGerente(gerentes, IDGerente);
+                                System.out.println("Digite o CPF do Gerente a ser atualizado: ");
+                                String cpfGerente = lendo.nextLine();
+                                executa.atualizarGerente(gerentes, cpfGerente);
                                 break;
                         }
                         break;
