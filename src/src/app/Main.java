@@ -93,6 +93,8 @@ public class Main {
                     System.out.println(gerente.toString());
                     linha();
                 }
+            }else {
+                System.out.println("Nenhum gerente encontrado! Tente cadastrar algum.");
             }
         }
     }
@@ -147,6 +149,21 @@ public class Main {
             }
         }
     }
+    public void deletarGerente(ArrayList<Gerente> gerentes, String CPF) {
+        for (int i = 0; i < gerentes.size(); i++) {
+            if (gerentes.get(i).getCpf().equalsIgnoreCase(CPF)) {
+                linha();
+                System.out.println("Gerente encontrado: ");
+                linha();
+                System.out.println(gerentes.get(i).toString());
+                linha();
+                System.out.println("Gerente " +  gerentes.get(i).getNome() +  ", com ID " + gerentes.get(i).getID() + " deletado com sucesso!");
+                linha();
+                gerentes.remove(i);
+            }
+        }
+
+    }
     public Main() {
     }
     public static void main(String[] args) {
@@ -195,6 +212,11 @@ public class Main {
                                 System.out.println("Digite o CPF do Gerente a ser atualizado: ");
                                 String cpfGerente = lendo.nextLine();
                                 executa.atualizarGerente(gerentes, cpfGerente);
+                                break;
+                            case 4:
+                                System.out.println("Digit o CPF do Gerente a ser deletado: ");
+                                String cpfGerenteDelete = lendo.nextLine();
+                                executa.deletarGerente(gerentes, cpfGerenteDelete);
                                 break;
                         }
                         break;
