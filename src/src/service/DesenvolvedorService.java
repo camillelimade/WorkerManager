@@ -2,45 +2,81 @@ package service;
 import model.Desenvolvedor;
 import java.util.ArrayList;
 import java.util.Scanner;
-import static app.Main.linha;
-
 public class DesenvolvedorService {
+    Scanner inputDev = new Scanner(System.in);
     // função de exibição do menu especifico do dev
-    public void menuDev() {
+    public int menuDev() {
         System.out.println("Bem vindo a Adminstração de Desenvolvedores: ");
         System.out.println("1) Cadastrar Desenvolvedores");
         System.out.println("2) Ler Desenvolvedores");
         System.out.println("3) Atualizar Desenvolvedores");
         System.out.println("4) Deletar Desenvolvedores");
+        System.out.println("5) Sair do Menu de Desenvolvedores");
+        return inputDev.nextInt();
+    }
+    public void DevsCRUD(ArrayList<Desenvolvedor> desenvolvedores, int ID){
+        Scanner devCRUD = new Scanner(System.in);
+        boolean menuRodar = true;
+        while(menuRodar){
+            switch (menuDev()) {
+                case 1:
+                    // recolhe as informações de cadastro do dev
+                    desenvolvedores.add(addDesenvolvedor(ID));
+                    ID++; // id já auto incrementado
+                    break;
+                case 2:
+                    // lista todos os devs
+                    listarDesenvolvedores(desenvolvedores);
+                    break;
+                case 3:
+                    System.out.println("Digite o CPF do Desenvolvedor a ser atualizado: ");
+                    String cpfDev = devCRUD.nextLine();
+                    atualizarDesenvolvedor(desenvolvedores, cpfDev);
+                    break;
+                case 4:
+                    System.out.println("Digit o CPF do Desenvolvedor a ser deletado: ");
+                    String cpfDevDelete = devCRUD.nextLine();
+                    deletarDesenvolvedor(desenvolvedores, cpfDevDelete);
+                    break;
+                case 5:
+                    menuRodar = false;
+                    FuncionarioService.linha();
+                    System.out.println("Saindo do Menu de DEV's...");
+                    FuncionarioService.linha();
+                    System.out.println("Bem vindo de volta ao Menu Principal!");
+                    FuncionarioService.linha();
+                    break;
+            }
+        }
     }
     // cadastra devs
     public Desenvolvedor addDesenvolvedor(int ID) {
         Scanner lendoDev = new Scanner(System.in);
-        linha();
+        FuncionarioService.linha();
         System.out.println("Cadastrando novo Desenvolvedor...");
-        linha();
+        FuncionarioService.linha();
         System.out.println("Digite o Nome Completo do Desenvolvedor: ");
         String nomeCompleto = lendoDev.nextLine();
-        linha();
+        FuncionarioService.linha();
         System.out.println("Digite a Data de Nascimento do Desenvolvedor: ");
         String dataNascimento = lendoDev.nextLine();
-        linha();
+        FuncionarioService.linha();
         System.out.println("Digite o CPF do Desenvolvedor: ");
         String cpf = lendoDev.nextLine();
-        linha();
+        FuncionarioService.linha();
         System.out.println("Digite o Telefone do Desenvolvedor: ");
         String telefone = lendoDev.nextLine();
-        linha();
+        FuncionarioService.linha();
         System.out.println("Digite o Salário do Desenvolvedor: ");
         double salario = lendoDev.nextDouble();
         lendoDev.nextLine();
-        linha();
+        FuncionarioService.linha();
         System.out.println("Digite a Linguagem principal do Desenvolvedor: ");
         String linguagem = lendoDev.nextLine();
-        linha();
+        FuncionarioService.linha();
         Desenvolvedor novoDev = new Desenvolvedor(ID, nomeCompleto, cpf, dataNascimento, telefone, salario, linguagem);
         System.out.println("Desenvolvedor " + nomeCompleto + " cadastrado com sucesso!");
-        linha();
+        FuncionarioService.linha();
         return novoDev;
     }
     // lista devs
@@ -48,7 +84,7 @@ public class DesenvolvedorService {
         // scanner pra ler do usuário dentro do contetxo dessa função
         Scanner resposta = new Scanner(System.in);
         // formatação de linha
-        linha();
+        FuncionarioService.linha();
         // pergunta se quer consultar um específico ou não
         System.out.println("Deseja um desenvolvedor específico? ");
         // recolhe o sim, Sim, sIm, siM, e SIM, se não for nenhum desses exibe lista geral
@@ -58,23 +94,23 @@ public class DesenvolvedorService {
             int ID = resposta.nextInt();
             for (int i = 0; i < devs.size(); i++) {
                 if (devs.get(i).getID() == ID) {
-                    linha();
+                    FuncionarioService.linha();
                     System.out.println(devs.get(i).toString());
-                    linha();
+                    FuncionarioService.linha();
                 }else {
-                    linha();
+                    FuncionarioService.linha();
                     System.out.println("ID " + ID + " não encontrado!");
-                    linha();
+                    FuncionarioService.linha();
                 }
             }
         }else {
             if (!devs.isEmpty()) {
-                linha();
+                FuncionarioService.linha();
                 System.out.println("Listando todos os desenvolvedores...");
-                linha();
+                FuncionarioService.linha();
                 for (int i  = 0; i < devs.size(); i++) {
                     System.out.println(devs.toString());
-                    linha();
+                    FuncionarioService.linha();
                 }
             }else {
                 System.out.println("Nenhum desenvolvedor encontrado! Tente cadastrar algum.");
@@ -86,47 +122,47 @@ public class DesenvolvedorService {
         Scanner atualizaLeitor = new Scanner(System.in);
         for (int i = 0; i < devs.size(); i++) {
             if (devs.get(i).getCpf().equalsIgnoreCase(CPF)) {
-                linha();
+                FuncionarioService.linha();
                 // localiza informa e exibe
                 System.out.println("Desenvolvedor encontrado, dados atuais nesse ID: ");
                 System.out.println(devs.get(i).toString());
-                linha();
+                FuncionarioService.linha();
                 // pede a atualização
                 System.out.println("Digite os novos dados do Desenvolvedor: ");
                 System.out.println("Nome completo: ");
                 String novoNome = atualizaLeitor.nextLine();
                 // após pegar seta imediatamente
                 devs.get(i).setNome(novoNome);
-                linha();
+                FuncionarioService.linha();
                 System.out.println("Data de Nascimento: ");
                 String novaDataNascimento = atualizaLeitor.nextLine();
                 // após pegar seta imediatamente
                 devs.get(i).setDataNascimento(novaDataNascimento);
-                linha();
+                FuncionarioService.linha();
                 System.out.println("CPF: ");
                 String novoCPF = atualizaLeitor.nextLine();
                 // após pegar seta imediatamente
                 devs.get(i).setCpf(novoCPF);
-                linha();
+                FuncionarioService.linha();
                 System.out.println("Telefone: ");
                 String novoTelefone = atualizaLeitor.nextLine();
                 // após pegar seta imediatamente
                 devs.get(i).setTelefone(novoTelefone);
-                linha();
+                FuncionarioService.linha();
                 System.out.println("Salário: ");
                 double novoSalario = atualizaLeitor.nextDouble();
                 // após pegar seta imediatamente
                 devs.get(i).setSalario(novoSalario);
                 atualizaLeitor.nextLine(); // limpa buffer
-                linha();
+                FuncionarioService.linha();
                 System.out.println("Linguagem principal: ");
                 String novaLinguagem = atualizaLeitor.nextLine();
                 // após pegar seta imediatamente
                 devs.get(i).setLinguagemPrincipal(novaLinguagem);
-                linha();
+                FuncionarioService.linha();
                 System.out.println("Desenvolvedor atualizado com sucesso!");
                 System.out.println(devs.get(i).toString());
-                linha();
+                FuncionarioService.linha();
             }else {
                 System.out.println("CPF " + CPF + " não encontrado!");
             }
@@ -136,13 +172,13 @@ public class DesenvolvedorService {
     public void deletarDesenvolvedor(ArrayList<Desenvolvedor> devs, String CPF) {
         for (int i = 0; i < devs.size(); i++) {
             if (devs.get(i).getCpf().equalsIgnoreCase(CPF)) {
-                linha();
+                FuncionarioService.linha();
                 System.out.println("Desenvolvedor encontrado: ");
-                linha();
+                FuncionarioService.linha();
                 System.out.println(devs.get(i).toString());
-                linha();
+                FuncionarioService.linha();
                 System.out.println("Desenvolvedor " +  devs.get(i).getNome() +  ", com ID " + devs.get(i).getID() + " deletado com sucesso!");
-                linha();
+                FuncionarioService.linha();
                 devs.remove(i);
             }
         }
